@@ -1,8 +1,11 @@
--58 | 36
--58 | 24
- 27 | 24
- 27 | 12
--58 | 12
--58 | 0
- 27 | 0
- 74 | 0
+[
+{xPos: 27,yPos: 36},
+{xPos: -58,yPos: 36},
+{xPos: -58,yPos: 24},
+{xPos: 27,yPos: 24},
+{xPos: 27,yPos: 12},
+{xPos: -58,yPos: 12},
+{xPos: -58,yPos: 0},
+{xPos: 27,yPos: 0},
+{xPos: 74,yPos:}
+]

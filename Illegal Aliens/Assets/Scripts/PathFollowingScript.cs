@@ -8,16 +8,8 @@ public class PathFollowingScript : MonoBehaviour {
 
 
 	public string[] fileNames;
+	public Vector3[] path01;
 
-	public Vector3[] path1 = { new Vector3 { x = 27, y = 36}, 
-								new Vector3 { x = -58, y = 36},
-								new Vector3 { x = -58, y = 24},
-								new Vector3 { x = 27, y = 24},
-								new Vector3 { x = 27, y = 12},
-								new Vector3 { x = -58, y = 12},
-								new Vector3 { x = -58, y = 0},
-								new Vector3 { x = 27, y = 0},
-								new Vector3 { x = 74, y = 0}};
 	float speed = 15f;
 	float maxSpeed = 30f;
 	float target = 0;
@@ -42,6 +34,13 @@ public class PathFollowingScript : MonoBehaviour {
 
 		alien = GetComponentsInChildren<Alien> ();
 
+		PathData loadPath = new PathData("path01.txt");
+
+//		foreach (Vector3 pos in loadPath.posData) {
+//			print (pos);
+//		}
+
+		path01 = loadPath.posData.ToArray ();
 
 		
 	}
@@ -49,7 +48,7 @@ public class PathFollowingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		float dist = Vector3.Distance (path1 [currentPos], transform.position);
+		float dist = Vector3.Distance (path01 [currentPos], transform.position);
 
 		if (Input.GetKey(KeyCode.Space)){
 			Move (speed);
@@ -63,7 +62,7 @@ public class PathFollowingScript : MonoBehaviour {
 			currentPos++;
 		}
 
-		if (currentPos >= path1.Length) {
+		if (currentPos >= path01.Length) {
 			//currentPos = 0;
 			Debug.Log ("YOU WIN!");
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
@@ -88,7 +87,7 @@ public class PathFollowingScript : MonoBehaviour {
 		
 	}
 	void Move(float speed ){
-	transform.position = Vector3.MoveTowards(transform.position, path1[currentPos], Time.deltaTime * speed);
+	transform.position = Vector3.MoveTowards(transform.position, path01[currentPos], Time.deltaTime * speed);
 	}
 		
 }

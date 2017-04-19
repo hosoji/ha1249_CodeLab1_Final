@@ -19,7 +19,7 @@ public class UtilScript : MonoBehaviour {
 		sw.Close ();
 	}
 
-	public static JSONNode ReadJSOnfromFile(string path, string fileName){
+	public static JSONNode ReadJSONFromFile(string path, string fileName){
 		return JSON.Parse(ReadStringFromFile (path, fileName));
 	}
 
