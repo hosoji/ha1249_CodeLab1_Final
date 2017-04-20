@@ -10,6 +10,8 @@ public class BulletScript : MonoBehaviour {
 	public float forceAmount;
 	Rigidbody rb;
 
+	float bulletKillDelay = 10;
+
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +22,13 @@ public class BulletScript : MonoBehaviour {
 	void Update () {
 		rb.AddForce (transform.up * forceAmount, ForceMode.Impulse);
 		rb.AddForce (transform.up * forceAmount, ForceMode.Acceleration);
+
+
+		Vector3 screenPos = Camera.main.ScreenToViewportPoint (transform.position);
+
+		if (screenPos.y > bulletKillDelay) { 	// top of viewport is 1)
+			Destroy (gameObject);
+		}
 
 	}
 

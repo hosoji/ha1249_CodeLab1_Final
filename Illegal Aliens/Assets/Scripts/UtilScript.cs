@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UtilScript : MonoBehaviour {
 
+
+
 	public static void WriteJSONtoFile(string path, string fileName, JSONClass json){
 		WriteStringToFile (path, fileName, json.ToString ());
 	}
