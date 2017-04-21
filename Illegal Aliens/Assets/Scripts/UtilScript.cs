@@ -47,35 +47,10 @@ public class UtilScript : MonoBehaviour {
 		WriteStringToFile (path, name, content);
 	}
 
-//
-//	public static Vector3[] GetPaths(string path, string fileName){
-//
-//		const char DELIMITER = '|';
-//
-//		string filePath = path + fileName;
-//
-//		StreamReader sr = new StreamReader (filePath);
-//
-//		int yPos = 0;
-//
-//
-//		while (!sr.EndOfStream) {
-//			string line = sr.ReadLine ();
-//
-//
-//			string[] splitLine = line.Split (DELIMITER);
-//
-//			transform.position = new Vector3 (float.Parse (splitLine [0]), float.Parse (splitLine [1]));
-//			yPos--;
-//		}
-//
-//		sr.Close ();
-//	}
-//		
 
 
 
-	float remapRange(float oldValue, float oldMin, float oldMax, float newMin, float newMax )
+	public static float remapRange(float oldValue, float oldMin, float oldMax, float newMin, float newMax )
 	{
 		float newValue = 0;
 		float oldRange = (oldMax - oldMin);

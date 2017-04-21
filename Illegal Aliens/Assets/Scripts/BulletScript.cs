@@ -12,10 +12,14 @@ public class BulletScript : MonoBehaviour {
 
 	float bulletKillDelay = 10;
 
+	ParticleSystem ps;
+
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
+
+		ps = GetComponentInChildren<ParticleSystem> ();
 	}
 	
 	// Update is called once per frame
@@ -34,9 +38,14 @@ public class BulletScript : MonoBehaviour {
 
 	public void OnCollisionEnter (Collision coll){
 		
-		Destroy (gameObject);
-		Destroy (coll.gameObject);
+		ps.Emit(Random.Range(3,4));
 		Camera.main.GetComponent<ScreenShakeScript> ().Shaker(0.03f); 
+
+		Destroy (coll.gameObject);
+		Destroy (gameObject);
+
+
+
 
 		}
 		

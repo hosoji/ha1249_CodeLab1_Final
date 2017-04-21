@@ -12,13 +12,13 @@ public class PathFollowingScript : MonoBehaviour {
 
 	float speed = 15f;
 	float maxSpeed = 30f;
-	float target = 0;
 
 	int num = 1;
 
 	Alien []alien;
 
 	public int currentPos = 0;
+	int previousPos;
 
 	// Use this for initialization
 	void Start () {
@@ -48,17 +48,29 @@ public class PathFollowingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
+
 		float dist = Vector3.Distance (path01 [currentPos], transform.position);
 
-		if (Input.GetKey(KeyCode.Space)){
-			Move (speed);
+
+		if (currentPos > 0) {
+			previousPos = currentPos - 1;
+		} else {	
+			previousPos = 0;
 		}
 
-		if (Input.GetKey(KeyCode.LeftShift)){
-			Move (maxSpeed);
+
+		if (Input.GetKey(KeyCode.A)){
+			Move (maxSpeed, currentPos);
+		}
+
+		if (Input.GetKey (KeyCode.D)) {
+			Move (maxSpeed, previousPos);
+			Debug.Log (previousPos);
+
 		}
 			
-		if (dist <= target){
+		if (dist <= 0){
 			currentPos++;
 		}
 
@@ -68,26 +80,34 @@ public class PathFollowingScript : MonoBehaviour {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
 
-		if (Input.GetKey(KeyCode.RightShift)){
-			for (int i = 0; i < alien.Length; i++) {
-				
-				alien[i].Ability (alien[i].transform.position);
+//		if (Input.GetKey(KeyCode.RightShift)){
+//			for (int i = 0; i < alien.Length; i++) {
+//				
+//				alien[i].Ability (alien[i].transform.position);
+//
+//			}
+//		}
+//
+//		if (!Input.GetKey (KeyCode.RightShift)) {
+//			for (int i = 0; i < alien.Length; i++) {
+//
+//				alien[i].Reset (alien[i].transform.position);
+//			}
+//		}
 
-			}
-		}
+		for (int i = 0; i < alien.Length; i++) {
 
-		if (!Input.GetKey (KeyCode.RightShift)) {
-			for (int i = 0; i < alien.Length; i++) {
+			alien[i].Ability (alien[i].transform.position);
 
-				alien[i].Reset (alien[i].transform.position);
-			}
 		}
 
 //		Debug.Log ("Distance = " + dist);
-		
+
 	}
-	void Move(float speed ){
-	transform.position = Vector3.MoveTowards(transform.position, path01[currentPos], Time.deltaTime * speed);
+	void Move(float speed, int target ){
+		transform.position = Vector3.MoveTowards(transform.position, path01[target], Time.deltaTime * speed);
+
+
 	}
 		
 }

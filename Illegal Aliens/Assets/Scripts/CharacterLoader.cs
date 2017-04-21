@@ -64,7 +64,7 @@ public class CharacterLoader : MonoBehaviour {
 
 								unit.transform.parent = playerHolder.transform;
 
-								unit.transform.position = new Vector3 (xPos + offsetX, yPos + offsetY, 0);
+								unit.transform.position = new Vector3 (xPos + offsetX, yPos + offsetY, Mathf.PerlinNoise(-2,2));
 							}
 						}
 						yPos--;
