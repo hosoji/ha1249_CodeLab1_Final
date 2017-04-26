@@ -9,8 +9,29 @@ public class AttackerScript : MonoBehaviour {
 //	[SerializeField] float speed = 5;
 	[SerializeField] float bulletWaitFactor = 0.5f;
 
+	public float speed = 30f;
+
 	float start;
-	float end;
+
+	private float end;
+
+	public float End{
+		get{
+			return end;
+		}
+
+		set{
+			end = value;
+
+			if (end >= posMax.x) {
+				end = posMax.x;
+			}
+
+			if (end <= posMin.x) {
+				end = posMin.x;
+			}
+		}
+	}
 
 	static float t = 1f;
 
@@ -26,7 +47,12 @@ public class AttackerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		transform.position = new Vector3(Mathf.Lerp(start, end, t), -27f);
+		Vector3 dir = new Vector3(end, -27,0) - transform.position;
+
+		dir.Normalize();
+
+		transform.position += dir * speed * Time.deltaTime;
+
 
 		t += 1f * Time.deltaTime;
 
@@ -39,7 +65,7 @@ public class AttackerScript : MonoBehaviour {
 	void PositionUpdate(){
 
 		start = transform.position.x;
-		end = Random.Range (posMin.x, posMax.x);
+		End =  Random.Range (posMin.x, posMax.x);
 		t = 0f;
 	}
 

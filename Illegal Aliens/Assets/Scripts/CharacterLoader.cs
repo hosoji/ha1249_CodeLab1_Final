@@ -13,9 +13,9 @@ public class CharacterLoader : MonoBehaviour {
 
 	float offsetX = 0;
 	float offsetY = 0;
-
-	public float startX;
-	public float startY;
+//
+//	public float startX;
+//	public float startY;
 
 	// initializatize level
 	void Start () {
@@ -95,7 +95,7 @@ public class CharacterLoader : MonoBehaviour {
 			
 		sr1.Close ();
 
-		formationHolder.transform.position = new Vector3 (startX, startY, 0);
+//		formationHolder.transform.position = new Vector3 (startX, startY, 0);
 
 		formationHolder.AddComponent<PathFollowingScript> ();
 

@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 public class PathFollowingScript : MonoBehaviour {
 
 
-	public string[] fileNames;
-	public Vector3[] path01;
+	public Vector3[] path;
 
 	float speed = 15f;
 	float maxSpeed = 30f;
@@ -34,13 +33,17 @@ public class PathFollowingScript : MonoBehaviour {
 
 		alien = GetComponentsInChildren<Alien> ();
 
-		PathData loadPath = new PathData("path01.txt");
+		string pathFile = "path0" + GameManagerScript.instance.levelNum.ToString () + ".txt"; 
+
+		PathData loadPath = new PathData(pathFile);
 
 //		foreach (Vector3 pos in loadPath.posData) {
 //			print (pos);
 //		}
 
-		path01 = loadPath.posData.ToArray ();
+		path = loadPath.posData.ToArray ();
+
+		transform.position = path [0];
 
 		
 	}
@@ -50,7 +53,7 @@ public class PathFollowingScript : MonoBehaviour {
 
 
 
-		float dist = Vector3.Distance (path01 [currentPos], transform.position);
+		float dist = Vector3.Distance (path [currentPos], transform.position);
 
 
 		if (currentPos > 0) {
@@ -74,9 +77,10 @@ public class PathFollowingScript : MonoBehaviour {
 			currentPos++;
 		}
 
-		if (currentPos >= path01.Length) {
+		if (currentPos >= path.Length) {
 			//currentPos = 0;
 			Debug.Log ("YOU WIN!");
+			GameManagerScript.instance.levelNum++;
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
 
@@ -105,7 +109,7 @@ public class PathFollowingScript : MonoBehaviour {
 
 	}
 	void Move(float speed, int target ){
-		transform.position = Vector3.MoveTowards(transform.position, path01[target], Time.deltaTime * speed);
+		transform.position = Vector3.MoveTowards(transform.position, path[target], Time.deltaTime * speed);
 
 
 	}

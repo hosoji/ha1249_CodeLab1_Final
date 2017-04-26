@@ -7,5 +7,5 @@
 {xPos: -58,yPos: 12},
 {xPos: -58,yPos: 0},
 {xPos: 27,yPos: 0},
-{xPos: 74,yPos:}
+{xPos: 74,yPos:0}
 ]

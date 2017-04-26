@@ -7,6 +7,8 @@ public class ChromaAdjuster : MonoBehaviour {
 
 	VignetteAndChromaticAberration effect;
 
+	float rate = 1000;
+
 	// Use this for initialization
 	void Start () {
 		effect = gameObject.GetComponent<VignetteAndChromaticAberration> ();
@@ -16,7 +18,10 @@ public class ChromaAdjuster : MonoBehaviour {
 
 		if (!effect.enabled) {
 			effect.enabled = true;
-			Invoke ("EffectOff", Random.Range(0.1f,0.3f));
+			Invoke ("EffectOff", 0.1f);
+
+			effect.chromaticAberration *= rate;
+
 		}
 	}
 

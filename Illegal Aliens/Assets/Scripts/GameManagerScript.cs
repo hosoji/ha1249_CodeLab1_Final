@@ -6,6 +6,8 @@ public class GameManagerScript : MonoBehaviour {
 
 	public static GameManagerScript instance;
 
+	public int levelNum = 1;
+
 //	Loader loader;
 
 	//Use Constructors to load up pathpoints
@@ -47,6 +49,7 @@ public class GameManagerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		print (levelNum);
 
 
 		
