@@ -63,11 +63,11 @@ public class PathFollowingScript : MonoBehaviour {
 		}
 
 
-		if (Input.GetKey(KeyCode.A)){
+		if (Input.GetKey(KeyCode.W)){
 			Move (maxSpeed, currentPos);
 		}
 
-		if (Input.GetKey (KeyCode.D)) {
+		if (Input.GetKey (KeyCode.S)) {
 			Move (maxSpeed, previousPos);
 			Debug.Log (previousPos);
 
