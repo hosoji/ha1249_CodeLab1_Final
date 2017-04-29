@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class CharacterLoader : MonoBehaviour {
 
-
-
 	public string[] fileNames;
 //	public static int levelNum;
 

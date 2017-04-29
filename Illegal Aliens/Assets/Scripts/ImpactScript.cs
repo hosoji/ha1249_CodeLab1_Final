@@ -5,18 +5,21 @@ using UnityEngine;
 public class ImpactScript : MonoBehaviour {
 
 
-
 	void Start(){
-
 	}
 
 
 		
 	public void EmitParticles(Vector3 pos, bool ready){
 
-		GameObject myGameOject = Resources.Load ("Prefabs/Impact") as GameObject;
+//		GameObject myGameOject = Resources.Load ("Prefabs/Impact") as GameObject;
+//
+//		GameObject impact = Instantiate (myGameOject, pos, Quaternion.identity);
 
-		GameObject impact = Instantiate (myGameOject, pos, Quaternion.identity);
+		GameObject impact = ObjectPooling.GetFromPool("Impact");
+
+		impact.transform.position = pos;
+
 
 		ParticleSystem ps = impact.GetComponent<ParticleSystem> ();
 		
@@ -26,5 +29,7 @@ public class ImpactScript : MonoBehaviour {
 //			Debug.Log ("Particles?");
 		}
 		ready = false;
+		ObjectPooling.AddToPool (impact);
+	
 	}
 }

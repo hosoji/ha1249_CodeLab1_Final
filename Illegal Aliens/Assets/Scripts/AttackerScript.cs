@@ -6,10 +6,10 @@ public class AttackerScript : MonoBehaviour {
 
 	Vector3 posMin = new Vector3 (-58, -27, 0);
 	Vector3 posMax = new Vector3 (55, -27, 0);
-//	[SerializeField] float speed = 5;
-	[SerializeField] float bulletWaitFactor = 0.5f;
 
-	public float speed = 30f;
+	float bulletWaitFactor = 0.5f;
+
+	float speed = 30f;
 
 	float yPos = -27;
 
@@ -38,12 +38,9 @@ public class AttackerScript : MonoBehaviour {
 
 	static float t = 1f;
 
-	GameObject bullet;
-
 	// Use this for initialization
 	void Start () {
-		
-		bullet = Resources.Load("Prefabs/Bullet") as GameObject;
+
 		InvokeRepeating ("ShootBullet", 1f, bulletWaitFactor);
 	}
 	
@@ -73,10 +70,9 @@ public class AttackerScript : MonoBehaviour {
 	}
 
 	void ShootBullet(){
-		float offSetX = 3;
-		float offSetY = 2;
-		Vector3 bulletPos = new Vector3 (transform.position.x + offSetX, transform.position.y + offSetY, 0);
-		Instantiate (bullet, bulletPos, Quaternion.identity);
+
+		GameObject bullet = ObjectPooling.GetFromPool("Bullet");
+
 	}
 		
 		
