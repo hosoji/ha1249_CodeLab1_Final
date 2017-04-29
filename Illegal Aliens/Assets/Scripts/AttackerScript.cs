@@ -11,9 +11,12 @@ public class AttackerScript : MonoBehaviour {
 
 	public float speed = 30f;
 
+	float yPos = -27;
+
 	float start;
 
 	private float end;
+
 
 	public float End{
 		get{
@@ -47,7 +50,7 @@ public class AttackerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Vector3 dir = new Vector3(end, -27,0) - transform.position;
+		Vector3 dir = new Vector3(end, yPos,0) - transform.position;
 
 		dir.Normalize();
 

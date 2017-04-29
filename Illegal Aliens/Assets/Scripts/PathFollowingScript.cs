@@ -101,7 +101,7 @@ public class PathFollowingScript : MonoBehaviour {
 
 		for (int i = 0; i < alien.Length; i++) {
 
-			alien[i].Ability (alien[i].transform.position);
+			alien[i].SetPlane (alien[i].transform.position);
 
 		}
 

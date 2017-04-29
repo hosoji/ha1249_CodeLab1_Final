@@ -3,37 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Alien : MonoBehaviour {
+public abstract class Alien : MonoBehaviour {
 
 	Renderer []rend;
 
 //	protected string name = "Alien";
 
 	void Start(){
+		Setup ();
+
+		}
+
+	public virtual void Setup(){
 		rend = GetComponentsInChildren<Renderer> ();
 
 		for (int i = 0; i < rend.Length; i++) {
 			rend [i].enabled = true;
-			SetMaterial (rend[i]);
-
+			SetMaterial (rend [i]);
 		}
-	}
-
-	public virtual void Ability(Vector3 pos){
-		transform.position = new Vector3 (pos.x, pos.y, 10);
-	
-	}
-
-	public virtual void Reset (Vector3 pos){
-		transform.position = new Vector3 (pos.x, pos.y, 0);
-	}
-
-	public virtual void SetMaterial(Renderer rend){
-
-		Material mat = Resources.Load("Materials/Dark", typeof(Material)) as Material;
-
-		rend.sharedMaterial = mat;
 		
 	}
+
+	public abstract void SetPlane (Vector3 pos);
+
+	public abstract void SetMaterial (Renderer rend);
+		
 		
 }

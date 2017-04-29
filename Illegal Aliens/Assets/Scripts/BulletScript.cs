@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BulletScript : MonoBehaviour {
 
-
+	ImpactScript impact;
 
 	public float forceAmount;
 	Rigidbody rb;
@@ -17,6 +17,8 @@ public class BulletScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GameObject manager = GameObject.Find ("SceneManager");
+		impact = manager.GetComponent<ImpactScript> ();
 		rb = GetComponent<Rigidbody> ();
 
 		ps = GetComponentInChildren<ParticleSystem> ();
@@ -37,9 +39,11 @@ public class BulletScript : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter (Collision coll){
+
+		impact.EmitParticles (coll.transform.position, true);
 		
-		ps.Emit(Random.Range(3,4));
-		Camera.main.GetComponent<ScreenShakeScript> ().Shaker(0.03f); 
+//		ps.Emit(Random.Range(3,4));
+//		Camera.main.GetComponent<ScreenShakeScript> ().Shaker(0.03f); 
 
 		Destroy (coll.gameObject);
 		Destroy (gameObject);

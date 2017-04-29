@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ExtrovertAlien : Alien {
 
-	//overriding the basic "Fire" function, in order to create
-	//a triple shot instead of a single shot
-	public override void Ability (Vector3 pos)
-	{
 
+	public override void SetPlane (Vector3 pos){
+		transform.position = new Vector3 (pos.x, pos.y, 10);
+
+	}
+
+	public override void SetMaterial (Renderer rend){
+		Material mat = Resources.Load("Materials/Dark", typeof(Material)) as Material;
+		rend.sharedMaterial = mat;
+	
 	}
 }

@@ -76,7 +76,7 @@ public class CharacterLoader : MonoBehaviour {
 					playerHolder.transform.position = new Vector3 (formationXPos, formationYPos);
 
 					if (fileName == fileNames[0]){
-						playerHolder.AddComponent<Alien> ();
+						playerHolder.AddComponent<MidPlaneAlien> ();
 					}
 
 					if (fileName == fileNames[1]){
@@ -84,7 +84,7 @@ public class CharacterLoader : MonoBehaviour {
 					}
 
 					if (fileName == fileNames[2]){
-//						formationHolder.AddComponent<PathFollowingScript> ();
+						playerHolder.AddComponent<ExtrovertAlien> ();
 					}
 
 
