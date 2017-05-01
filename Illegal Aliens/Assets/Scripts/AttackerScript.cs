@@ -41,11 +41,13 @@ public class AttackerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+	
 		InvokeRepeating ("ShootBullet", 1f, bulletWaitFactor);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 
 		Vector3 dir = new Vector3(end, yPos,0) - transform.position;
 

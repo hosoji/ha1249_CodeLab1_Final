@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class CharacterLoader : MonoBehaviour {
 
 	public string[] fileNames;
+
+	GameObject formationHolder;
 //	public static int levelNum;
 
 	float offsetX = 0;
@@ -20,6 +22,7 @@ public class CharacterLoader : MonoBehaviour {
 
 
 
+
 //		levelNum = Random.Range (0, fileNames.Length);
 
 		string mainFile = fileNames [3];
@@ -29,7 +32,7 @@ public class CharacterLoader : MonoBehaviour {
 
 		StreamReader sr1 = new StreamReader (firstPath);
 
-		GameObject formationHolder = new GameObject ("Formation Holder");
+		formationHolder = new GameObject ("Formation Holder");
 
 		int formationYPos = 0;
 

@@ -33,9 +33,11 @@ public class PoolableImpact : Poolable {
 		ps.Play();
 		Camera.main.GetComponent<ScreenShakeScript> ().Shaker (0.03f); 
 
-		if (!ps.isPlaying) {
-			ObjectPooling.AddToPool (gameObject);
-		}
+		Invoke ("PoolImpact", 0.5f);
 
+	}
+
+	void PoolImpact(){
+		ObjectPooling.AddToPool (gameObject);
 	}
 }

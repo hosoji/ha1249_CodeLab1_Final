@@ -10,7 +10,9 @@ public class PoolableBullet : Poolable {
 
 	TrailRenderer tr;
 
-	float bulletKillDelay = 10;
+	Renderer rend;
+
+	float bulletKillDelay = 2;
 
 	ParticleSystem ps;
 
@@ -22,14 +24,17 @@ public class PoolableBullet : Poolable {
 		GameObject manager = GameObject.Find ("SceneManager");
 		impact = manager.GetComponent<ImpactScript> ();
 
+		rend = GetComponent<Renderer>();
+
 
 		ps = GetComponentInChildren<ParticleSystem> ();
 	}
 
 	public override bool RePool(){ 
-		Vector3 screenPos = Camera.main.ScreenToViewportPoint (transform.position);
-
-		return screenPos.y > bulletKillDelay; 
+//		Vector3 screenPos = Camera.main.ScreenToViewportPoint (transform.position);
+//
+//		return screenPos.y > bulletKillDelay; 
+		return (!rend.isVisible);
 	}
 
 	public override void Reset(){ 

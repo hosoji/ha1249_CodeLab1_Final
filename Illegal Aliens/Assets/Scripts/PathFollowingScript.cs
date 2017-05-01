@@ -33,7 +33,7 @@ public class PathFollowingScript : MonoBehaviour {
 
 		alien = GetComponentsInChildren<Alien> ();
 
-		string pathFile = "path0" + GameManagerScript.instance.levelNum.ToString () + ".txt"; 
+		string pathFile = "path01.txt"; 
 
 		PathData loadPath = new PathData(pathFile);
 
@@ -51,6 +51,10 @@ public class PathFollowingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (currentPos == 8) {
+			CameraMovement shift = Camera.main.GetComponent<CameraMovement> ();
+			shift.nextLevel = true;
+		}
 
 
 		float dist = Vector3.Distance (path [currentPos], transform.position);
@@ -75,13 +79,16 @@ public class PathFollowingScript : MonoBehaviour {
 			
 		if (dist <= 0){
 			currentPos++;
+			print ("Current player pos: " +currentPos);
 		}
 
 		if (currentPos >= path.Length) {
 			//currentPos = 0;
 			Debug.Log ("YOU WIN!");
-			GameManagerScript.instance.levelNum++;
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+//			GameManagerScript.instance.levelNum++;
+//			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+
+
 		}
 
 //		if (Input.GetKey(KeyCode.RightShift)){

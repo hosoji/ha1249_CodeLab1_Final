@@ -11,6 +11,7 @@ public class PathData {
 
 	private const string POS_X = "xPos";
 	private const string POS_Y = "yPos";
+	private const string POS_Z = "zPos";
 
 	public PathData(string fileName){
 
@@ -21,7 +22,7 @@ public class PathData {
 
 		for (int i = 0; i < json.Count; i++) {
 
-			position = new Vector3(json[i][POS_X].AsFloat, json[i][POS_Y].AsFloat);
+			position = new Vector3(json[i][POS_X].AsFloat, json[i][POS_Y].AsFloat, json[i][POS_Z].AsFloat);
 			posData.Add (position);
 //			Debug.Log(position);
 		}
