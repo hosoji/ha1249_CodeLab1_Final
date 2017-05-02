@@ -12,7 +12,27 @@ public class CameraMovement : MonoBehaviour {
 
 	public bool nextLevel;
 
-	public int currentPos = 0;
+	bool ready = true;
+
+
+
+	private int currentPos;
+
+	public int CurrentPos{
+		get{
+			return currentPos;
+		}
+		set{
+			currentPos = value;
+
+			if (currentPos >= cameraPath.Length) {
+				currentPos = cameraPath.Length - 1;
+
+			}
+		}
+
+	}
+
 
 	ScreenShakeScript shake;
 
@@ -34,24 +54,42 @@ public class CameraMovement : MonoBehaviour {
 	void Update () {
 
 		float dist = Vector3.Distance (cameraPath [currentPos], transform.position);
-//		Debug.Log ("Camera current pos" + currentPos);
+//		Debug.Log ("distance is" + dist);
+		Debug.Log ("Camera Pos" + currentPos);
 
 
-		if (dist <= 0){
-			currentPos++;
-		}
+		//
+
+//		if (dist <= 0) {
+//			ready = true;
+//		} else {
+//			ready = false;
+//		}
+
+
+		print ("Next level is: " + nextLevel);
+		print ("Ready: " + ready);
 
 		if (nextLevel) {
-			shake.enabled = false;
-//
+			StartCoroutine ("MoveCamera", currentPos);
+
+
+
+
+//			shake.enabled = false;
+			AfterShift ();
+
+
 //			if (timePressed == 1f) {
 //				timePressed = 0f;
 //			}
-	
-			StartCoroutine ("MoveCamera", currentPos);
-			nextLevel = false;
+//			nextLevel = false;
+
+//			StartCoroutine ("MoveCamera", currentPos);
+
 		} else {
-			shake.enabled = true;
+//			shake.enabled = true;
+			ready = true;
 		}
 	
 	}
@@ -60,10 +98,31 @@ public class CameraMovement : MonoBehaviour {
 
 		timePressed = Mathf.Clamp01 (timePressed + Time.deltaTime);
 
+
 		transform.position = Vector3.Lerp(transform.position,cameraPath[target], timePressed);
 //		Debug.Log("Camera position: " + transform.position);
 
 		yield return 0;
+
+
+
+
+	}
+
+	public void UpdateCue (int i, bool l){
+		CurrentPos = i;
+		if (l) {
+			if (ready) {
+
+				nextLevel = true;
+				ready = false;
+
+			}
+		} 
+	}
+
+	public void AfterShift(){
+		nextLevel = false;
 	}
 		
 

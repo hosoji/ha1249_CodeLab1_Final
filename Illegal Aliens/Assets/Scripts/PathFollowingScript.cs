@@ -12,11 +12,14 @@ public class PathFollowingScript : MonoBehaviour {
 	float speed = 15f;
 	float maxSpeed = 30f;
 
-	int num = 1;
+	int[] cameraCues = {8, 20, 29 };
+
+	int num = 0;
+
 
 	Alien []alien;
 
-	public int currentPos = 0;
+	int currentPos = 0;
 	int previousPos;
 
 	// Use this for initialization
@@ -45,16 +48,22 @@ public class PathFollowingScript : MonoBehaviour {
 
 		transform.position = path [0];
 
-		
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		CameraMovement shift = Camera.main.GetComponent<CameraMovement> ();
 
-		if (currentPos == 8) {
-			CameraMovement shift = Camera.main.GetComponent<CameraMovement> ();
-			shift.nextLevel = true;
+		for (int i = 0; i < cameraCues.Length; i++) {
+
+			if (currentPos == cameraCues [i]) {
+
+				print (i + 1);
+				shift.UpdateCue (i + 1, true);
+			}
 		}
+
 
 
 		float dist = Vector3.Distance (path [currentPos], transform.position);
@@ -73,13 +82,14 @@ public class PathFollowingScript : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.S)) {
 			Move (maxSpeed, previousPos);
-			Debug.Log (previousPos);
+//			Debug.Log (previousPos);
 
 		}
 			
 		if (dist <= 0){
 			currentPos++;
 			print ("Current player pos: " +currentPos);
+	
 		}
 
 		if (currentPos >= path.Length) {

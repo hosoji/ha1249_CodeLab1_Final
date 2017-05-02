@@ -1,4 +1,7 @@
 [
 {xPos: 0,yPos: 1, zPos: -70},
 {xPos: 133,yPos: 1, zPos: -70}
+{xPos: 133,yPos: 60, zPos: -70}
+{xPos: 0,yPos: 60, zPos: -70}
+
 ]
