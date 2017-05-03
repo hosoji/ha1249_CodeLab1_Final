@@ -49,21 +49,14 @@ public class CameraMovement : MonoBehaviour {
 
 		transform.position = cameraPath [0];
 
-//		shake.enabled = true;
+
 	}
 	
 
 	void Update () {
 
 		float dist = Vector3.Distance (cameraPath [currentPos], transform.position);
-//		Debug.Log ("distance is" + dist);
-//		Debug.Log ("Camera Pos" + currentPos);
-//
-//		Debug.Log ("Shake is; " + shake.enabled);
-//
 
-//		print ("Next level is: " + nextLevel);
-//		print ("Ready: " + ready);
 
 		if (nextLevel) {
 
@@ -75,8 +68,7 @@ public class CameraMovement : MonoBehaviour {
 		if (Mathf.Approximately(timePressed , 1f)) {
 				timePressed = 0f;
 			}
-//			nextLevel = false;
-//		print (timePressed);
+
 
 	
 	}
@@ -92,8 +84,7 @@ public class CameraMovement : MonoBehaviour {
 		transform.position = Vector3.Lerp(transform.position,cameraPath[target], timePressed);
 
 
-//		
-//		shake.enabled = true;
+
 		yield return 0;
 	
 
@@ -101,17 +92,10 @@ public class CameraMovement : MonoBehaviour {
 
 
 	}
-//
+
 	public void UpdateCue (int i){
 		CurrentPos = i;
-//		if (l) {
-//			if (ready) {
-//
-//				nextLevel = true;
-//				ready = false;
-//
-//			}
-//		} 
+
 	}
 
 

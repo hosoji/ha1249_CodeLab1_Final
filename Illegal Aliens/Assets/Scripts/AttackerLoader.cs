@@ -28,6 +28,8 @@ public class AttackerLoader : MonoBehaviour {
 
 
 
+
+
 			switch (type) {
 			case AttackerType.MID:
 				Debug.Log ("Attacker type is: " + type);
@@ -69,7 +71,7 @@ public class AttackerLoader : MonoBehaviour {
 
 				if (line [xPos] == 'O') {
 					GameObject unit = GameObject.CreatePrimitive (PrimitiveType.Cube);
-
+					unit.layer = 8;
 					unit.transform.parent = attackerHolder.transform;
 
 					unit.transform.position = new Vector3 (xPos + offsetX, yPos + offsetY, 0);

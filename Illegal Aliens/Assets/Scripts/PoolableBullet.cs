@@ -50,6 +50,7 @@ public class PoolableBullet : Poolable {
 		float offSetX = 3;
 		float offSetY = 2;
 		transform.position = new Vector3 (transform.position.x + offSetX, attacker.transform.position.y + offSetY, attacker.transform.position.z);
+		transform.rotation = attacker.transform.rotation;
 
 		rb.velocity = Vector3.zero; 
 		tr.Clear();

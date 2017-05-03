@@ -15,7 +15,7 @@ public class BulletScript : MonoBehaviour {
 
 	void Update () {
 		rb.AddForce (transform.up * forceAmount, ForceMode.Impulse);
-		rb.AddForce (transform.up * forceAmount, ForceMode.Acceleration);
+//		rb.AddForce (transform.up * forceAmount, ForceMode.Acceleration);
 	}
 
 

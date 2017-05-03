@@ -17,7 +17,7 @@ public abstract class  Attacker : MonoBehaviour {
 
 	protected float start;
 
-	protected float xPosMin = -58;
+	protected float xPosMin = -130;
 	protected float xPosMax = 220;
 
 	private float end;
@@ -78,11 +78,19 @@ public abstract class  Attacker : MonoBehaviour {
 		float offSetY = 2;
 
 		bullet.transform.position = new Vector3 (this.transform.position.x + offSetX, this.transform.position.y + offSetY, this.transform.position.z);
-
-
-	
+		bullet.transform.parent = this.transform;
 
 	}
+
+	public void InvertAttacker(){
+		basePos = 110;
+//		transform.Rotate (0, 0, 180);
+		Vector3 pos = new Vector3 (transform.position.x, basePos, transform.position.z);
+		transform.SetPositionAndRotation(pos, Quaternion.Euler(0, 0, 180));
+
+	}
+
+
 
 	public abstract void SetMaterial (Renderer rend);
 		

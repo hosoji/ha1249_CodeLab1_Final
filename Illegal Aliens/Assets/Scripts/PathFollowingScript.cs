@@ -18,6 +18,11 @@ public class PathFollowingScript : MonoBehaviour {
 	int num = 0;
 
 
+
+	Attacker []enemy;
+	bool shifted = false;
+
+
 	Alien []alien;
 
 	private int currentPos;
@@ -29,10 +34,10 @@ public class PathFollowingScript : MonoBehaviour {
 		set{
 			currentPos = value;
 
-			if (currentPos >= path.Length) {
-				currentPos = path.Length - 1;
+//			if (currentPos >= path.Length) {
+//				currentPos = path.Length - 1;
 
-			}
+//			}
 		}
 
 	}
@@ -41,9 +46,7 @@ public class PathFollowingScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-
-
+		
 		alien = GetComponentsInChildren<Alien> ();
 
 		string pathFile = "path01.txt"; 
@@ -76,6 +79,16 @@ public class PathFollowingScript : MonoBehaviour {
 			}
 		}
 
+		if (currentPos == cameraCues[1]) {
+
+			enemy = (Attacker[])FindObjectsOfType(typeof(Attacker));
+
+			for (int i = 0; i < enemy.Length; i++) {
+				enemy [i].InvertAttacker ();
+			
+				}
+		}
+
 
 
 		float dist = Vector3.Distance (path [currentPos], transform.position);
@@ -104,7 +117,7 @@ public class PathFollowingScript : MonoBehaviour {
 	
 		}
 
-		if (currentPos >= path.Length -1 ) {
+		if (currentPos >= path.Length) {
 			//currentPos = 0;
 			Debug.Log ("YOU WIN!");
 
