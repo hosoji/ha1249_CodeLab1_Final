@@ -9,30 +9,40 @@ public class PathFollowingScript : MonoBehaviour {
 
 	public Vector3[] path;
 
+
 	float speed = 15f;
 	float maxSpeed = 30f;
 
-	int[] cameraCues = {8, 20, 29 };
+	public int[] cameraCues = {8, 20, 29 };
 
 	int num = 0;
 
 
 	Alien []alien;
 
-	int currentPos = 0;
+	private int currentPos;
+
+	public int CurrentPos{
+		get{
+			return currentPos;
+		}
+		set{
+			currentPos = value;
+
+			if (currentPos >= path.Length) {
+				currentPos = path.Length - 1;
+
+			}
+		}
+
+	}
+
 	int previousPos;
 
 	// Use this for initialization
 	void Start () {
-//		LineRenderer lr;
-//		lr = gameObject.AddComponent<LineRenderer> ();
-//		lr.material = new Material (Shader.Find("Sprites/Default"));
-//		lr.widthMultiplier = 1f;
-//		lr.numPositions = 9;
-//
-//		for (int i = 0; i < lr.numPositions; i++) {
-//			lr.SetPosition (i, path1[i]);
-//		}
+
+
 
 		alien = GetComponentsInChildren<Alien> ();
 
@@ -40,9 +50,6 @@ public class PathFollowingScript : MonoBehaviour {
 
 		PathData loadPath = new PathData(pathFile);
 
-//		foreach (Vector3 pos in loadPath.posData) {
-//			print (pos);
-//		}
 
 		path = loadPath.posData.ToArray ();
 
@@ -60,7 +67,12 @@ public class PathFollowingScript : MonoBehaviour {
 			if (currentPos == cameraCues [i]) {
 
 				print (i + 1);
-				shift.UpdateCue (i + 1, true);
+				shift.UpdateCue (i + 1);
+				shift.nextLevel = true;
+
+
+			} else {
+//				shift.nextLevel = false;
 			}
 		}
 
@@ -76,45 +88,32 @@ public class PathFollowingScript : MonoBehaviour {
 		}
 
 
-		if (Input.GetKey(KeyCode.W)){
+		if (Input.GetKey(KeyCode.Space)){
 			Move (maxSpeed, currentPos);
 		}
 
-		if (Input.GetKey (KeyCode.S)) {
+		if (Input.GetKey (KeyCode.Z)) {
 			Move (maxSpeed, previousPos);
 //			Debug.Log (previousPos);
 
 		}
 			
 		if (dist <= 0){
-			currentPos++;
+			CurrentPos++;
 			print ("Current player pos: " +currentPos);
 	
 		}
 
-		if (currentPos >= path.Length) {
+		if (currentPos >= path.Length -1 ) {
 			//currentPos = 0;
 			Debug.Log ("YOU WIN!");
-//			GameManagerScript.instance.levelNum++;
-//			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+
+			SceneManager.LoadScene (0);
 
 
 		}
 
-//		if (Input.GetKey(KeyCode.RightShift)){
-//			for (int i = 0; i < alien.Length; i++) {
-//				
-//				alien[i].Ability (alien[i].transform.position);
-//
-//			}
-//		}
-//
-//		if (!Input.GetKey (KeyCode.RightShift)) {
-//			for (int i = 0; i < alien.Length; i++) {
-//
-//				alien[i].Reset (alien[i].transform.position);
-//			}
-//		}
+
 
 		for (int i = 0; i < alien.Length; i++) {
 

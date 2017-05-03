@@ -6,19 +6,13 @@ public class GameManagerScript : MonoBehaviour {
 
 	public static GameManagerScript instance;
 
-	public int levelNum = 1;
+
+	public int score = 100;
 
 
 	// Use this for initialization
 	void Awake () {
 		
-		if (instance == null) {
-			instance = this;
-			DontDestroyOnLoad (this);
-		} else {
-			Destroy (gameObject);
-		}
-
 
 
 	}
@@ -26,7 +20,7 @@ public class GameManagerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-//		print (levelNum);
+		print (score);
 
 
 		

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoolableBullet : Poolable { 
 
-	ImpactScript impact;
+
 
 	Rigidbody rb;
 
@@ -22,7 +22,7 @@ public class PoolableBullet : Poolable {
 	{
 		attacker = GameObject.Find("Attacker Holder"); 
 		GameObject manager = GameObject.Find ("SceneManager");
-		impact = manager.GetComponent<ImpactScript> ();
+
 
 		rend = GetComponent<Renderer>();
 
@@ -49,7 +49,7 @@ public class PoolableBullet : Poolable {
 
 		float offSetX = 3;
 		float offSetY = 2;
-		transform.position = new Vector3 (attacker.transform.position.x + offSetX, attacker.transform.position.y + offSetY, 0);
+		transform.position = new Vector3 (transform.position.x + offSetX, attacker.transform.position.y + offSetY, attacker.transform.position.z);
 
 		rb.velocity = Vector3.zero; 
 		tr.Clear();
@@ -63,7 +63,14 @@ public class PoolableBullet : Poolable {
 
 		impact.GetComponent<PoolableImpact> ().EmitParticles (coll.transform.position);
 
+		GameObject manager = GameObject.Find ("SceneManager");
+		manager.GetComponent<ScoreManager> ().score--;
+
+
+
 		Destroy (coll.gameObject);
+
+
 		ObjectPooling.AddToPool (gameObject);
 
 

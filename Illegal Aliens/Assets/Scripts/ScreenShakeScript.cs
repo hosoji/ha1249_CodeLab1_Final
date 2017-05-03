@@ -23,12 +23,12 @@ public class ScreenShakeScript : MonoBehaviour {
 //		Debug.Log (shake);
 
 		if (shake > 0) {
-			transform.position = Random.insideUnitSphere * shakeAmount;
+			Camera.main.transform.position = Random.insideUnitSphere * shakeAmount;
 			shake -= Time.deltaTime * decreaseFactor;
 
 		} else {
 			shake = 0.0f;
-			transform.position = camPos;
+			Camera.main.transform.position = camPos;
 		}
 			
 		

@@ -9,9 +9,48 @@ public class AttackerLoader : MonoBehaviour {
 	float offsetX = 0;
 	float offsetY = 0;
 
+	int enemyNum = 7;
+
+	public enum AttackerType {
+		FRONT, BACK, MID
+	}
+
+	public AttackerType type;
+
 	// Use this for initialization
 	void Start () {
-		string fileName = fileNames[0];
+
+		for (int i = 0; i < enemyNum; i++) {
+			
+			GameObject attacker = LoadAttacker ();
+
+			attacker.layer = 8;
+
+
+
+			switch (type) {
+			case AttackerType.MID:
+				Debug.Log ("Attacker type is: " + type);
+				attacker.transform.position = new Vector3 (0, -27, 0);
+				break;
+			case AttackerType.FRONT:
+				attacker.transform.position = new Vector3 (0, -27, -10);
+				Debug.Log ("Attacker type is: " + type);
+				break;
+			case AttackerType.BACK:
+				attacker.transform.position = new Vector3 (0, -27, 10);
+				Debug.Log ("Attacker type is: " + type);
+				break;
+
+
+			}
+		}
+
+	}
+
+	GameObject LoadAttacker(){
+
+		string fileName = fileNames[Random.Range(0,3)];
 
 		string filePath = Application.dataPath +"/"+ fileName;
 
@@ -42,10 +81,31 @@ public class AttackerLoader : MonoBehaviour {
 		sr.Close ();
 
 
-		attackerHolder.transform.position = new Vector3 (0, -27, 0);
 
-		attackerHolder.AddComponent<AttackerScript> ();
 
+		if (fileName == fileNames[0]){
+			attackerHolder.AddComponent<MidPlaneAttacker> ();
+			type = AttackerType.MID;
+
+
+		}
+
+		if (fileName == fileNames[1]){
+			attackerHolder.AddComponent<FrontPlaneAttacker> ();
+			type = AttackerType.FRONT;
+
+
+		}
+
+		if (fileName == fileNames[2]){
+			attackerHolder.AddComponent<BackPlaneAttacker> ();
+			type = AttackerType.BACK;
+
+
+
+		}
+
+		return attackerHolder;
 
 	}
 

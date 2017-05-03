@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 388f1c74e101345a39e4a329f47c9a12
+timeCreated: 1493805440
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Munro Small
+  fontNames:
+  - Munro Small
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
