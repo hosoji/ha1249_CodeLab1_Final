@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour {
 
-	public static GameManagerScript instance;
 
 
 	public int score = 100;
 
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		
 
 

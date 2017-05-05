@@ -14,7 +14,6 @@ public class PoolableBullet : Poolable {
 
 	float bulletKillDelay = 2;
 
-	ParticleSystem ps;
 
 	GameObject attacker;
 
@@ -26,8 +25,6 @@ public class PoolableBullet : Poolable {
 
 		rend = GetComponent<Renderer>();
 
-
-		ps = GetComponentInChildren<ParticleSystem> ();
 	}
 
 	public override bool RePool(){ 
@@ -47,7 +44,7 @@ public class PoolableBullet : Poolable {
 		rb = GetComponent<Rigidbody> ();
 		tr = GetComponent<TrailRenderer> ();
 
-		float offSetX = 3;
+		float offSetX = 1;
 		float offSetY = 2;
 		transform.position = new Vector3 (transform.position.x + offSetX, attacker.transform.position.y + offSetY, attacker.transform.position.z);
 		transform.rotation = attacker.transform.rotation;

@@ -17,8 +17,8 @@ public abstract class  Attacker : MonoBehaviour {
 
 	protected float start;
 
-	protected float xPosMin = -130;
-	protected float xPosMax = 220;
+	protected float xPosMin = -150;
+	protected float xPosMax = 250;
 
 	private float end;
 

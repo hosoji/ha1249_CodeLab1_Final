@@ -34,10 +34,6 @@ public class PathFollowingScript : MonoBehaviour {
 		set{
 			currentPos = value;
 
-//			if (currentPos >= path.Length) {
-//				currentPos = path.Length - 1;
-
-//			}
 		}
 
 	}
@@ -74,9 +70,7 @@ public class PathFollowingScript : MonoBehaviour {
 				shift.nextLevel = true;
 
 
-			} else {
-//				shift.nextLevel = false;
-			}
+			} 
 		}
 
 		if (currentPos == cameraCues[1]) {

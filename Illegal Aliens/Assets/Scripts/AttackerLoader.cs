@@ -9,7 +9,7 @@ public class AttackerLoader : MonoBehaviour {
 	float offsetX = 0;
 	float offsetY = 0;
 
-	int enemyNum = 7;
+	int enemyNum = 6;
 
 	public enum AttackerType {
 		FRONT, BACK, MID
